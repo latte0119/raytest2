@@ -4,6 +4,7 @@
 namespace rayt {
 using namespace geometry;
 class Ray {
+   public:
     Ray(const vec3& origin_, const vec3& direction_)
         : origin(origin_),
           direction(direction_) {}
