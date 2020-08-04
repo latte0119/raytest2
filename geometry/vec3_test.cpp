@@ -4,8 +4,8 @@
 
 namespace geo = geometry;
 int main() {
-    geo::Vec3 v1(1, 2, 3);
-    geo::Vec3 v2(4, 5, 6);
+    geo::vec3 v1(1, 2, 3);
+    geo::vec3 v2(4, 5, 6);
 
     std::cout << v1 + v2 << std::endl;
     std::cout << v1 - v2 << std::endl;
