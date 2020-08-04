@@ -1,9 +1,9 @@
-#ifndef VEC3_H
-#define VEC3_H
+#pragma once
 #include <cmath>
 #include <iostream>
 
-namespace geometry {
+#include "utility.hpp"
+namespace rayt {
 class vec3 {
    public:
     double x;
@@ -106,6 +106,10 @@ inline double length(const vec3 &v) {
     return sqrt(length2(v));
 }
 
+inline double distance(const vec3 &a, const vec3 &b) {
+    return length(a - b);
+}
+
 inline vec3 normalize(const vec3 &v) {
     return v / length(v);
 }
@@ -115,10 +119,14 @@ std::ostream &operator<<(std::ostream &stream, const vec3 &v) {
     return stream;
 }
 
-vec3 clamp(const vec3 &a, const vec3 &minv, const vec3 &maxv) {
-    return vec3(std::max(std::min(a.x, maxv.x), minv.x),
-                std::max(std::min(a.y, maxv.y), minv.y),
-                std::max(std::min(a.z, maxv.z), minv.z));
+inline vec3 clamp(const vec3 &a, const vec3 &minv, const vec3 &maxv) {
+    return vec3(clamp(a.x, minv.x, maxv.x),
+                clamp(a.y, minv.y, maxv.y),
+                clamp(a.z, minv.z, maxv.z));
+}
+
+inline vec3 mix(const vec3 &a, const vec3 &b, const double k) {
+    return a * (1 - k) + b * k;
 }
 
 inline void orthonormalBasis(const vec3 &v1, vec3 &v2, vec3 &v3) {
@@ -130,6 +138,4 @@ inline void orthonormalBasis(const vec3 &v1, vec3 &v2, vec3 &v3) {
     v2 = normalize(v2 - dot(v1, v2) * v1);
     v3 = cross(v1, v2);
 }
-}  // namespace geometry
-
-#endif
+}  // namespace rayt

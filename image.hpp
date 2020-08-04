@@ -1,12 +1,10 @@
 #pragma once
 
-#include <iostream>
 #include <memory>
 
-#include "geometry/vec3.hpp"
+#include "vec3.hpp"
 
 namespace rayt {
-using namespace geometry;
 class Image {
    public:
     Image(const int width_, const int height_)
@@ -16,7 +14,6 @@ class Image {
 
     inline void setPixel(const int x, const int y, vec3 a) {
         a = clamp(a, vec3(0.0), vec3(1.0));
-
         const int idx = y * width + x;
         pixels[idx] = Pixel(
             static_cast<unsigned char>(a.x * 255),
