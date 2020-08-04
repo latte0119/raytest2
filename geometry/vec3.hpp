@@ -115,6 +115,12 @@ std::ostream &operator<<(std::ostream &stream, const vec3 &v) {
     return stream;
 }
 
+vec3 clamp(const vec3 &a, const vec3 &minv, const vec3 &maxv) {
+    return vec3(std::max(std::min(a.x, maxv.x), minv.x),
+                std::max(std::min(a.y, maxv.y), minv.y),
+                std::max(std::min(a.z, maxv.z), minv.z));
+}
+
 inline void orthonormalBasis(const vec3 &v1, vec3 &v2, vec3 &v3) {
     if (std::abs(v1.x) > 0.9)
         v2 = vec3(0, 1, 0);
